@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
 
+import java.sql.SQLException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -13,8 +15,9 @@ public class OrderDaoTest {
 
 
     @Test
-    void shouldFindSavedOrders() {
+    void shouldFindSavedOrders() throws SQLException {
         Order order = new Order();
+        order.setName("Test");
         OrderDao dao = new OrderDao(dataSource);
 
         dao.insert(order);

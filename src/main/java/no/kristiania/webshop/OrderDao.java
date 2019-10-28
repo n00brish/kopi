@@ -1,18 +1,41 @@
 package no.kristiania.webshop;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
-public class OrderDao {
-    private  List<Order> orders = new ArrayList<>();
+public class OrderDao extends  AbstractDao<Order> {
+   // private  List<Order> orders = new ArrayList<>();
 
     public OrderDao(DataSource dataSource) {
+        super(dataSource);
 
     }
 
-    public void insert(Order order) { orders.add(order); }
+    //public void insert(Order order, String sql1) { orders.add(order); }
 
-    public List<Order> listAll() { return orders; }
+    @Override
+    protected void insertObject(Order order, PreparedStatement stmt) throws SQLException {
+        stmt.setString(1, order.getName());
 
+    }
+
+   // public List<Order> listAll(String sql) { return orders; }
+
+    @Override
+    protected Order readObject(ResultSet rs) throws SQLException {
+        Order order = new Order();
+        order.setName(rs.getString( 1));
+        return order;
+    }
+
+    public void insert (Order product) throws SQLException{
+        insert(product, "insert into products (name) values(?)");
+    }
+
+    public  List<Order> listAll() throws SQLException{
+        return  listAll("select * from products");
+    }
 }
