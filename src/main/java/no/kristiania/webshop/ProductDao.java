@@ -11,9 +11,7 @@ public class ProductDao extends AbstractDao<String> {
 
 
 
-    public  ProductDao (DataSource dataSource){
-        super(dataSource);
-    }
+    public  ProductDao (DataSource dataSource){ super(dataSource); }
 
     @Override
     protected void insertObject(String product, PreparedStatement stmt) throws SQLException{
