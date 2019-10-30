@@ -16,7 +16,7 @@ public class OrderDaoTest {
         dataSource.setUrl ("jdbc:h2:mem:myTestDatabase");
 
         dataSource.getConnection().createStatement().executeUpdate(
-                "create table ORDERS (name varchar(1000) not null)");
+                "create table ORDERS (id serial primary key, name varchar(1000) not null)");
 
         Order order = new Order();
         order.setName("Test");

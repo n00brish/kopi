@@ -27,7 +27,7 @@ public class OrderDao extends  AbstractDao<Order> {
     @Override
     protected Order readObject(ResultSet rs) throws SQLException {
         Order order = new Order();
-        order.setName(rs.getString( 1));
+        order.setName(rs.getString( "name"));
         return order;
     }
 
