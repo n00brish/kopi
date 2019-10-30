@@ -307,7 +307,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductDaoTest {
 
-    private ProductDao productDao;
+    private no.kristiania.webshop.ProductDao productDao;
 
     // This method is executed before each test method
     @BeforeEach
@@ -332,7 +332,7 @@ class ProductDaoTest {
         //  and apply them
         Flyway.configure().dataSource(dataSource).load().migrate();
 
-        productDao = new ProductDao(dataSource);
+        productDao = new no.kristiania.webshop.ProductDao(dataSource);
     }
 
 
@@ -420,12 +420,12 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 // DAO = Data Access Object: A place to put the code to read data from Java object and the database
-public class ProductDao {
+public class no.kristiania.webshop.ProductDao {
 
     // A DataSource specifies HOW TO connect to a database: hostname, port, database name, credentials
     private DataSource dataSource;
 
-    public ProductDao(DataSource dataSource) {
+    public no.kristiania.webshop.ProductDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -452,7 +452,7 @@ public class ProductDao {
         //  to your most valauble asset: You data
         dataSource.setPassword(properties.getProperty("dataSource.password"));
         
-        ProductDao productDao = new ProductDao(dataSource);
+        no.kristiania.webshop.ProductDao productDao = new no.kristiania.webshop.ProductDao(dataSource);
         
         // Create a "domain object" or an "entity": An object of the type our users care about
         Product product = new Product();
@@ -489,11 +489,11 @@ public class ProductDao {
 ### Connecting to a database and reading data
 
 ```java
-public class OrderDao {
+public class no.kristiania.webshop.OrderDao {
 
     private DataSource dataSource;
 
-    public OrderDao(DataSource dataSource) {
+    public no.kristiania.webshop.OrderDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
