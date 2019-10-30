@@ -1,3 +1,4 @@
+
 package no.kristiania.webshop;
 
 import org.postgresql.ds.PGSimpleDataSource;
@@ -5,15 +6,18 @@ import org.postgresql.ds.PGSimpleDataSource;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.Properties;
 
 public class WebShop {
 
+
         private final OrderDao orderDao;
         private PGSimpleDataSource dataSource;
-        private BufferedReader input;
+        private BufferedReader input = new BufferedReader( new InputStreamReader(System.in)) ;
         private ProductDao productDao;
+
 
         public WebShop() throws IOException {
 
@@ -22,11 +26,11 @@ public class WebShop {
 
                 dataSource = new PGSimpleDataSource();
 
-                dataSource.setUrl("jdbc:postgres1://localhost:5432/mywebshopdb");
+                dataSource.setUrl("jdbc:postgresql://localhost:5432/mywebshopdb");
                 dataSource.setUser("mywebshop");
                 dataSource.setPassword(properties.getProperty("dataSource.password"));
                 productDao = new ProductDao(dataSource);
-                orderDao = new OrderDao(dataSource)
+                orderDao = new OrderDao(dataSource);
         }
 
 
@@ -36,7 +40,7 @@ public class WebShop {
 
 
         private void run() throws IOException, SQLException {
-        System.out.println("choose action: create[products]|create [order]");
+        System.out.println("Choose action: create[product]|create [order]");
         String action = input.readLine();
 
         switch (action.toLowerCase()){
@@ -62,13 +66,9 @@ public class WebShop {
 
         private void insertProduct() throws IOException, SQLException{
         System.out.println("Please type the name of a new product");
-
         String productName = input.readLine();
-
-        productDao = new ProductDao(dataSource);
         productDao.insert(productName);
 
-        System.out.println("Current products" + productDao.listAll());
 }
 }
 
