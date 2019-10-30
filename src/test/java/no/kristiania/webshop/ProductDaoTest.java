@@ -30,7 +30,7 @@ public class ProductDaoTest {
 
 
     private  String sampleProduct() {
-        return null;
+        return "apples" ;
 
     }
 

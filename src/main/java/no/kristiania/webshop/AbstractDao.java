@@ -17,7 +17,7 @@ public abstract class AbstractDao<T>  {
 
     public long insert(T product, String sql) throws SQLException {
         try (Connection connection = dataSource.getConnection()){
-            try (PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
+            try (PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){ // cmd + K
                 insertObject(product, stmt);
                 stmt.executeUpdate();
 
