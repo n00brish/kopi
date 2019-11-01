@@ -1,4 +1,5 @@
 package no.kristiania.webshop;
+import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +13,10 @@ public class ProductDaoTest {
     @Test
     void shouldListInsertedProduct()throws SQLException {
         JdbcDataSource dataSource = new JdbcDataSource();
-        dataSource.setUrl ("jdbc:h2:mem:myTestDatabase");
+        dataSource.setUrl ("jdbc:h2:mem:myTestDatabase;DB_CLOSE_DELAY=-1");
 
 
-        dataSource.getConnection ().createStatement(). executeUpdate(
-                "create table PRODUCTS(id serial primary key, name varchar (1000) not null)"
-
-        );
+        Flyway .configure().dataSource(dataSource).load().migrate();
 
 
         ProductDao dao = new ProductDao(dataSource);
@@ -30,7 +28,13 @@ public class ProductDaoTest {
 
 
     private  String sampleProduct() {
-        return "apples" ;
+        String[] alternatives = {
+
+
+                "apples", "bananas", "coconuts", "dates"  
+        };
+        return null;
+
 
     }
 

@@ -25,5 +25,6 @@ public class OrderDaoTest {
         dao.insert(order);
         assertThat(dao.listAll()).contains(order);
 
+
     }
 }
