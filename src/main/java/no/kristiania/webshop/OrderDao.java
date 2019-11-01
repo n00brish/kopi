@@ -32,10 +32,10 @@ public class OrderDao extends  AbstractDao<Order> {
     }
 
     public void insert (Order product) throws SQLException{
-        insert(product, "insert into products (name) values(?)");
+        insert(product, "insert into orders (name) values(?)");
     }
 
     public  List<Order> listAll() throws SQLException{
-        return  listAll("select * from products");
+        return  listAll("select * from orders");
     }
 }

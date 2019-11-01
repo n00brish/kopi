@@ -1,5 +1,6 @@
 package no.kristiania.webshop;
 
+import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +14,9 @@ public class OrderDaoTest {
     @Test
     void shouldFindSavedOrders() throws SQLException {
         JdbcDataSource dataSource = new JdbcDataSource();
-        dataSource.setUrl ("jdbc:h2:mem:myTestDatabase");
+        dataSource.setUrl ("jdbc:h2:mem:myTestDatabase;DB_CLOSE_DELAY=-1");
 
-        dataSource.getConnection().createStatement().executeUpdate(
-                "create table ORDERS (id serial primary key, name varchar(1000) not null)");
+        Flyway.configure().dataSource(dataSource).load().migrate();
 
         Order order = new Order();
         order.setName("Test");
@@ -24,6 +24,7 @@ public class OrderDaoTest {
 
         dao.insert(order);
         assertThat(dao.listAll()).contains(order);
+
 
     }
 }
