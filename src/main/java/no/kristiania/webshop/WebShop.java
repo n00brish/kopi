@@ -2,6 +2,8 @@
 package no.kristiania.webshop;
 
 import org.postgresql.ds.PGSimpleDataSource;
+import org.flywaydb.core.Flyway;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -29,6 +31,11 @@ public class WebShop {
                 dataSource.setUrl("jdbc:postgresql://localhost:5432/mywebshopdb");
                 dataSource.setUser("mywebshop");
                 dataSource.setPassword(properties.getProperty("dataSource.password"));
+
+                Flyway.configure().dataSource(dataSource).load().migrate();
+
+
+
                 productDao = new ProductDao(dataSource);
                 orderDao = new OrderDao(dataSource);
         }
@@ -67,7 +74,9 @@ public class WebShop {
         private void insertProduct() throws IOException, SQLException{
         System.out.println("Please type the name of a new product");
         String productName = input.readLine();
-        productDao.insert(productName);
+        Product product = new Product();
+        product.setName(productName);
+        productDao.insert(product);
 
 }
 }

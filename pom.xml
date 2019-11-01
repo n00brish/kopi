@@ -64,7 +64,8 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>6.0.8</version>
+            <version>6.0.3</version>
+            <scope> test </scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.pjhampton/logevent -->
         <dependency>
@@ -72,7 +73,11 @@
             <artifactId>logevents</artifactId>
             <version>0.1.24</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>6.0.3</version>
+        </dependency>
 
 
     </dependencies>
