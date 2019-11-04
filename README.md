@@ -1,4 +1,8 @@
-# <Skriv tittel på prosjektet>
+# <taskmanager kopi eirik og magnus >
+
+https://github.com/Westerdals/pgr203-assignment-3-n00brish
+
+
 
 [![Build Status](https://travis-ci.com/Westerdals/prosjektnavn.svg?token=Sj4fcBr8hVerjvQWkoAz&branch=master)](https://travis-ci.com/Westerdals/prosjektnavn)
 

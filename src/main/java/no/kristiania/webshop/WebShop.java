@@ -28,8 +28,8 @@ public class WebShop {
 
                 dataSource = new PGSimpleDataSource();
 
-                dataSource.setUrl("jdbc:postgresql://localhost:5432/mywebshopdb");
-                dataSource.setUser("mywebshop");
+                dataSource.setUrl("jdbc:postgresql://localhost:5432/webshopdb");
+                dataSource.setUser("webshopuser");
                 dataSource.setPassword(properties.getProperty("dataSource.password"));
 
                 Flyway.configure().dataSource(dataSource).load().migrate();
@@ -72,9 +72,14 @@ public class WebShop {
 }
 
         private void insertProduct() throws IOException, SQLException{
-        System.out.println("Please type the name of a new product");
-        String productName = input.readLine();
-        productDao.insert(productName);
+                Product product = new Product();
+                System.out.println("Please type the name of a new product");
+                product.setName(input.readLine());
+                System.out.println("Please type the price");
+                product.setPrice(Double.valueOf(input.readLine()));
+
+
+                productDao.insert(product);
 
 }
 }

@@ -25,6 +25,8 @@ public abstract class AbstractDao<T>  {
                 generatedKeys.next();
                 return generatedKeys.getLong( 1);
 
+
+
             }
         }
     }

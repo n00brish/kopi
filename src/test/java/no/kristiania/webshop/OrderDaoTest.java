@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class OrderDaoTest {
+    private JdbcDataSource dataSource = TestDatabase.testDataSource();
 
     @Test
     void shouldFindSavedOrders() throws SQLException {
@@ -19,7 +20,7 @@ public class OrderDaoTest {
         Flyway.configure().dataSource(dataSource).load().migrate();
 
         Order order = new Order();
-        order.setName("Test");
+        order.setName("test");
         OrderDao dao = new OrderDao(dataSource);
 
         dao.insert(order);
