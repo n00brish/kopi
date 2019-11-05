@@ -34,6 +34,7 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.5.1</version>
+            <scope> test </scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
@@ -64,18 +65,14 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>6.0.3</version>
+            <version>6.0.8</version>
+
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.pjhampton/logevent -->
         <dependency>
             <groupId>org.logevents</groupId>
             <artifactId>logevents</artifactId>
             <version>0.1.24</version>
-        </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>6.0.3</version>
         </dependency>
 
 
