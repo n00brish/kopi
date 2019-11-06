@@ -48,9 +48,9 @@ public class ProductDaoTest {
         String[] alternatives = {
 
 
-                "apples", "bananas", "coconuts", "dates"  
-        };
-        return alternatives[new Random().nextInt(alternatives.length)] ;
+                "apples", "bananas", "coconuts", "dates"
+        }
+       ; return alternatives[new Random().nextInt(alternatives.length)] ;
 
 
     }
