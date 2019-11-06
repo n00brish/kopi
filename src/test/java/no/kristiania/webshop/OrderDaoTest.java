@@ -20,7 +20,7 @@ public class OrderDaoTest {
         Flyway.configure().dataSource(dataSource).load().migrate();
 
         Order order = new Order();
-        order.setName("test");
+        order.setName("Test");
         OrderDao dao = new OrderDao(dataSource);
 
         dao.insert(order);

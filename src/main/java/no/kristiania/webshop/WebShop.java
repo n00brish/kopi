@@ -28,8 +28,8 @@ public class WebShop {
 
                 dataSource = new PGSimpleDataSource();
 
-                dataSource.setUrl("jdbc:postgresql://localhost:5432/webshopdb");
-                dataSource.setUser("webshopuser");
+                dataSource.setUrl("jdbc:postgresql://localhost:5432/mywebshopdb");
+                dataSource.setUser("mywebshop");
                 dataSource.setPassword(properties.getProperty("dataSource.password"));
 
                 Flyway.configure().dataSource(dataSource).load().migrate();

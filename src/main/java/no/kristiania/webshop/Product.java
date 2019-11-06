@@ -7,7 +7,6 @@ public class Product {
     private Double price;
 
     public void setName(String name) {
-
         this.name = name;
     }
 

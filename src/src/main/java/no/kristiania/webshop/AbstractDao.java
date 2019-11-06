@@ -15,25 +15,22 @@ public abstract class AbstractDao<T>  {
         this.dataSource = dataSource;
     }
 
-    public long insert(T product, String sql) throws SQLException {
+    public  void insert (T product) throws SQLException {
         try (Connection connection = dataSource.getConnection()){
-            try (PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){ // cmd + K
+            String  sql = "insert into products(name) values(?)";
+            try (PreparedStatement stmt = connection.prepareStatement(sql)){
                 insertObject(product, stmt);
                 stmt.executeUpdate();
-
-                ResultSet generatedKeys = stmt.getGeneratedKeys();
-                generatedKeys.next();
-                return generatedKeys.getLong( 1);
 
             }
         }
     }
 
-    protected abstract void insertObject(T product, PreparedStatement stmt) throws SQLException;
+    protected abstract void insertObject(T o, PreparedStatement stmt) throws SQLException;
 
-    public List<T> listAll(String sql) throws  SQLException{
+    public List<T> listAll() throws  SQLException{
         try(Connection connection = dataSource.getConnection()){
-            try (PreparedStatement stmt = connection.prepareStatement(sql)){
+            try (PreparedStatement stmt = connection.prepareStatement( "select * from products")){
                 try(ResultSet rs = stmt.executeQuery()){
                     List<T> products = new ArrayList<>();
                     while (rs.next()){
